@@ -6,13 +6,22 @@ import com.brighton1101.reddittracker.common.model.SubredditPost
 import scala.concurrent.Future
 
 trait RedditClient {
-  def getSubredditData(
+
+  def getSubredditPosts(
     subreddit: String,
     after: Option[String] = None,
     before: Option[String] = None,
     limit: Option[Int] = None
   )(implicit ec: ExecutionContext): Future[Either[HttpClientError, Seq[SubredditPost]]]
 }
+
+/**
+ * The below case classes are to represent the
+ * responses we get from reddit's http api. these
+ * get mapped onto `SubredditPost` objects in the
+ * implementation
+ **/
+
 case class SubredditResponseChildData(
   approved_at_utc: Option[String],
   subreddit: String,
@@ -84,7 +93,7 @@ class RedditClientImpl(httpClient: HttpClient) extends RedditClient {
   val limitKey = "limit"
   val defaultHeaders = Map("User-Agent" -> "Reddit Tracker 0.1")
 
-  def getSubredditData(
+  def getSubredditPosts(
     subreddit: String,
     after: Option[String] = None,
     before: Option[String] = None,

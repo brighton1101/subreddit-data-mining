@@ -41,7 +41,7 @@ class RedditClientSpec extends FlatSpec {
     )
     val redditClient = new RedditClientImpl(httpClientMock)
     val res = redditClient
-      .getSubredditData("scala", after=Some("helloworld"))
+      .getSubredditPosts("scala", after=Some("helloworld"))
       .map { res =>
         assert(res.right.get(0).subreddit == "scala") 
         res
