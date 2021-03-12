@@ -1,5 +1,12 @@
 package com.brighton1101.reddittracker.common.model
 
+/**
+ * This is a work in progress representation of the
+ * subreddit listings response as case classes...
+ * there are many properties and i got lazy, to
+ * be continued
+ **/
+
 case class SubredditChildData(
   approved_at_utc: Option[String],
   subreddit: String,
@@ -24,8 +31,7 @@ case class SubredditChildData(
   author_flair_background_color: Option[String],
   subreddit_type: String,
   ups: Int,
-  total_awards_received: Int,
-
+  total_awards_received: Int
 )
 
 case class SubredditChild(
