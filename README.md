@@ -1,5 +1,7 @@
 # Subreddit Data Warehouse Simulation using Scala/Spark/Bigquery
 
+## Work in progress, come back later...
+
 ## Design
 
 ## Fetching Data
