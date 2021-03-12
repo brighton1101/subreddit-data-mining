@@ -7,7 +7,7 @@ package com.brighton1101.reddittracker.common.model
  * be continued
  **/
 
-case class SubredditChildData(
+case class SubredditResponseChildData(
   approved_at_utc: Option[String],
   subreddit: String,
   selftext: String,
@@ -34,20 +34,20 @@ case class SubredditChildData(
   total_awards_received: Int
 )
 
-case class SubredditChild(
+case class SubredditResponseChild(
   kind: String,
-  data: SubredditChildData
+  data: SubredditResponseChildData
 )
 
-case class SubredditData(
+case class SubredditResponseData(
   modhash: String,
   dist: Int,
-  children: Seq[SubredditChild],
+  children: Seq[SubredditResponseChild],
   after: Option[String],
   before: Option[String]
 )
 
 case class SubredditResponse(
   kind: String,
-  data: SubredditData
+  data: SubredditResponseData
 )
