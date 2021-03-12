@@ -7,6 +7,16 @@ import scala.concurrent.Future
 
 trait RedditClient {
 
+  /** Fetches post information from reddit
+   *  The below parameters are taken directly from
+   *  reddit's api dev homepage.
+   *
+   *  @see https://www.reddit.com/dev/api/
+   *  @param subreddit - name of subreddit to fetch posts from
+   *  @param after - name of listing to be used as anchor point after
+   *  @param before - name of listing to be used as anchor point before
+   *  @param limit - number of results to fetch
+   **/
   def getSubredditPosts(
     subreddit: String,
     after: Option[String] = None,
