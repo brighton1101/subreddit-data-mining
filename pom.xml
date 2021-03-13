@@ -71,6 +71,14 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+            <launchers>
+            <launcher>
+                <id>runner</id>
+                <mainClass>com.brighton1101.reddittracker.Runner</mainClass>
+            </launcher>
+            </launchers>
+        </configuration>
       </plugin>
       <!--
         The following disables SureFire and enables ScalaTest
@@ -102,7 +110,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+    </plugin>
 
     </plugins>
   </build>
