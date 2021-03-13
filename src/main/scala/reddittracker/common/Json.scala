@@ -14,4 +14,8 @@ object Json {
 
   def toJson(value: Any): String =
     mapper.writeValueAsString(value)
+
+  def toDelimJson(values: Seq[Any], delim: String = "\n"): String =
+    values.map(toJson(_)).mkString(delim) + delim
 }
+

@@ -20,4 +20,11 @@ class JsonSpec extends FlatSpec {
       Json.toJson(TestClass("helloworld")) == "{\"name\":\"helloworld\"}"
     )
   }
+
+  "Json" should "handle newline delimited format" in {
+    case class Test1(a: String)
+    case class Test2(b: String)
+    val a: Seq[Any] = Seq(Test1("a"), Test2("b"))
+    assert( Json.toDelimJson(a) == "{\"a\":\"a\"}\n{\"b\":\"b\"}\n" )
+  }
 }
