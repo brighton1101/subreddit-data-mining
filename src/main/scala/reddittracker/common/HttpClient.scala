@@ -1,11 +1,9 @@
 package com.brighton1101.reddittracker.common
 
-import scala.concurrent.ExecutionContext
-import scala.concurrent.Future
-import scala.reflect.runtime.universe._
-
 import sttp.client3._
 import sttp.client3.asynchttpclient.future.AsyncHttpClientFutureBackend
+
+import scala.concurrent.{ExecutionContext, Future}
 
 sealed trait HttpClientError
 case class UnknownRequestError() extends HttpClientError
@@ -44,6 +42,6 @@ class SttpHttpClient(backend: SttpBackend[Future, Any]) extends HttpClient {
 }
 
 object SttpHttpClient {
-  def getClient: SttpHttpClient = new SttpHttpClient(AsyncHttpClientFutureBackend())
+  def getClient(implicit ec: ExecutionContext): SttpHttpClient = new SttpHttpClient(AsyncHttpClientFutureBackend())
 }
 

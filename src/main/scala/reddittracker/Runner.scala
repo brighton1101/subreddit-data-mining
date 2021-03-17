@@ -17,7 +17,6 @@ f"""Reddit ETL Pipeline:
 
   def displayHelp: Unit = println(helpMsg)
 
-  def help: Unit = println(helpMsg)
   def main(args: Array[String]): Unit = {
     if (args.isEmpty)
       displayHelp

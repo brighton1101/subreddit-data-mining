@@ -5,17 +5,16 @@ import java.io.{File, PrintWriter}
 import com.brighton1101.reddittracker.common.client.{RedditClient, RedditClientImpl}
 import com.brighton1101.reddittracker.common.{CliAction, HttpClient, Json, SttpHttpClient}
 
-import scala.concurrent.{Await, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.duration.Duration
-import scala.util.{Failure, Success}
+import scala.util.Success
 
 case class FetchRedditConfig(
-                            resultsDestination: String,
-                            subreddit: String,
-                            after: Option[String],
-                            before: Option[String],
-                            limit: Option[Int])
+  resultsDestination: String,
+  subreddit: String,
+  after: Option[String],
+  before: Option[String],
+  limit: Option[Int]
+ )
 
 
 class FetchRedditAction extends CliAction {
@@ -37,7 +36,9 @@ class FetchRedditAction extends CliAction {
         ()
       })
     res onComplete {
-      case Success(Right(_)) => println("Success")
+      case Success(Right(_)) => {
+        println("Success")
+      }
       case _ => {
         println("Failure")
         java.lang.System.exit(1)

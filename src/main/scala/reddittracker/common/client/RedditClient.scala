@@ -1,9 +1,9 @@
 package com.brighton1101.reddittracker.common.client
 
-import scala.concurrent.ExecutionContext
-import com.brighton1101.reddittracker.common.{HttpClient, HttpClientError, SttpHttpClient}
 import com.brighton1101.reddittracker.common.model.SubredditPost
-import scala.concurrent.Future
+import com.brighton1101.reddittracker.common.{HttpClient, HttpClientError}
+
+import scala.concurrent.{ExecutionContext, Future}
 
 trait RedditClient {
 

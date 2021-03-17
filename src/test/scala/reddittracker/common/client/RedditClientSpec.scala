@@ -21,7 +21,8 @@ class RedditHttpClientMock(
     assert(params == expectedParams)
     assert(headers == expectedHeaders)
     Future {
-      Right(Json.fromJson[T](scala.io.Source.fromResource("test_reddit.json").mkString))
+      val body = scala.io.Source.fromResource("test_reddit.json").mkString
+      Right(Json.fromJson[T](body))
     }
   }
 }
