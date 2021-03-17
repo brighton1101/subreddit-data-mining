@@ -1,11 +1,9 @@
 package com.brighton1101.reddittracker.common.client
 
 import scala.io
-import scala.concurrent.Future
-import scala.concurrent.Await
+import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.duration.Duration
 import org.scalatest.FlatSpec
-
 import com.brighton1101.reddittracker.common.model.SubredditPost
 import com.brighton1101.reddittracker.common.{HttpClient, HttpClientError, Json}
 
@@ -18,13 +16,12 @@ class RedditHttpClientMock(
     url: String,
     params: Map[String, String] = Map(),
     headers: Map[String, String] = Map()
-  )(implicit mt: Manifest[T]): Future[Either[HttpClientError, T]] = {
-    implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
+  )(implicit mt: Manifest[T], ec: ExecutionContext): Future[Either[HttpClientError, T]] = {
     assert(url == expectedUri)
     assert(params == expectedParams)
     assert(headers == expectedHeaders)
     Future {
-      Right(Json.fromJson[T](io.Source.fromResource("test_reddit.json").mkString))
+      Right(Json.fromJson[T](scala.io.Source.fromResource("test_reddit.json").mkString))
     }
   }
 }

@@ -43,6 +43,5 @@ class FetchRedditAction extends CliAction {
         java.lang.System.exit(1)
       }
     }
-    Await.ready(res, Duration.Inf)
   }
 }

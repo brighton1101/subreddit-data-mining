@@ -12,22 +12,20 @@ case class UnknownRequestError() extends HttpClientError
 case class InvalidResponseError() extends HttpClientError
 
 trait HttpClient {
-   def asyncGet[T](
-    url: String,
-    params: Map[String, String] = Map(),
-    headers: Map[String, String] = Map()
-  )(implicit mt: Manifest[T]): Future[Either[HttpClientError, T]] 
+  def asyncGet[T](
+                   url: String,
+                   params: Map[String, String] = Map(),
+                   headers: Map[String, String] = Map()
+                 )(implicit mt: Manifest[T], ec: ExecutionContext): Future[Either[HttpClientError, T]]
 }
 
 class SttpHttpClient(backend: SttpBackend[Future, Any]) extends HttpClient {
-
-  implicit val ec = ExecutionContext.global
 
   def asyncGet[T](
     url: String,
     params: Map[String, String] = Map(),
     headers: Map[String, String] = Map()
-  )(implicit mt: Manifest[T]): Future[Either[HttpClientError, T]] = {
+  )(implicit mt: Manifest[T], ec: ExecutionContext): Future[Either[HttpClientError, T]] = {
     try {
       basicRequest
         .get(uri"$url?$params")
