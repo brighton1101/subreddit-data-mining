@@ -14,15 +14,14 @@ case class FetchRedditConfig(
   after: Option[String],
   before: Option[String],
   limit: Option[Int]
- )
+)
 
 
 class FetchRedditAction extends CliAction {
 
-  lazy val httpClient: HttpClient = SttpHttpClient.getClient
-  lazy val redditClient: RedditClient = new RedditClientImpl(httpClient)
-
   def run(args: Seq[String]): Unit = {
+    lazy val httpClient: HttpClient = SttpHttpClient.getClient
+    lazy val redditClient: RedditClient = new RedditClientImpl(httpClient)
     if (args.size < 1) return
     val fileSrc = scala.io.Source.fromFile(args(0))
     val config = Json.fromJson[FetchRedditConfig](fileSrc.mkString)
@@ -38,6 +37,7 @@ class FetchRedditAction extends CliAction {
     res onComplete {
       case Success(Right(_)) => {
         println("Success")
+        java.lang.System.exit(0)
       }
       case _ => {
         println("Failure")
