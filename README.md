@@ -3,7 +3,7 @@
 ## Work in progress, come back later...
 
 ## Run from maven
-```scala:run "-DaddArgs=[ARGS HERE SEPARATED BY '|']"```
+```mvn scala:run "-DaddArgs=[ARGS HERE SEPARATED BY '|']"```
 
 ## Package app and run executable jar
 ```
