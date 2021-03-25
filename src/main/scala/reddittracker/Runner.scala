@@ -18,12 +18,17 @@ f"""Reddit ETL Pipeline:
   def displayHelp: Unit = println(helpMsg)
 
   def main(args: Array[String]): Unit = {
-    if (args.isEmpty)
+    if (args.isEmpty) {
       displayHelp
+      java.lang.System.exit(1)
+    }
     else
       commands.get(args(0)) match {
         case Some(s) => s.run(args.toSeq.drop(1))
-        case None => displayHelp
+        case None => {
+          displayHelp
+          java.lang.System.exit(1)
+        }
       }
   }
 }

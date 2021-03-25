@@ -18,7 +18,6 @@ trait HttpClient {
 }
 
 class SttpHttpClient(backend: SttpBackend[Future, Any]) extends HttpClient {
-
   def asyncGet[T](
     url: String,
     params: Map[String, String] = Map(),
