@@ -2,17 +2,14 @@
 
 ## Work in progress, come back later...
 
-## Design
+## Run from maven
+```scala:run "-DaddArgs=[ARGS HERE SEPARATED BY '|']"```
 
-## Fetching Data
-- Command line invoked scala app
-- Fetches subreddit data and writes to csv file stored in GCS bucket
+## Package app and run executable jar
+```
+mvn package
+java -jar target/reddittracker-0.1-jar-with-dependencies.jar [ARGS HERE]
+```
 
-
-## Exporting Data to bigquery
-- Command line invoked scala app
-- Loads csv data from gcs to bigquery
-
-
-## Spark
-- R
+## Run tests
+```mvn test```
